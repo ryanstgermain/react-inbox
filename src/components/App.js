@@ -6,19 +6,24 @@ import '../style/App.css';
 import '../style/index.css';
 
 class App extends Component {
-    state = {
-        messages: []
+    constructor(props) {
+        super(props);
+            this.state = {
+                messages: []
+            }
     }
+
     async componentDidMount() {
         const response = await fetch('http://localhost:8082/api/messages')
         const json = await response.json()
         this.setState({messages: json})
-  }
+    }
+
   render() {
     return (
       <div>
         <Toolbar />
-        <MessageList />
+        <MessageList messages={this.state.messages}/>
       </div>
     );
   }
