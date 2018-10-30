@@ -1,9 +1,8 @@
 import React from 'react';
-import '../style/index.css';
 
-const MessageList = (props) => {
-return (
-    <div className="row message unread">
+const Message = (props) => {
+    return (
+        <div className="row message unread">
   <div className="col-xs-1">
     <div className="row">
       <div className="col-xs-2">
@@ -20,6 +19,7 @@ return (
     </a>
   </div>
 </div>
-);
+    );
 }
-export default MessageList;
+
+export default Message;
