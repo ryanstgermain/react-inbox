@@ -1,30 +1,20 @@
 import React from 'react';
+import '../style/App.css';
+import Message from './Message'
 
-const Message = (props) => {
-    const messageItems = props.messages.map(item => {
-    return (
-        <div className="row message unread">
-            <div className="col-xs-1">
-                <div className="row">
-                    <div className="col-xs-2">
-                        <input type="checkbox" />
-                    </div>
-                    <div className="col-xs-2">
-                        <i className="star fa fa-star-o"></i>
-                    </div>
-                </div>
-            </div>
-            <div className="col-xs-11">
-                <a href="#">
-                    {item.subject}
-                </a>
-            </div>
-        </div>
-    );
-    })
-    return (
-        <div>{messageItems}</div>
-    );
+const MessageList = (props) => {
+    console.log(props)
+    if (props.data !== undefined) {
+        return (
+            props.data.map(message => {
+                return <Message subject={message} messageRead={props.messageRead}></Message>
+            })
+        )
+    } else {
+        return (
+            <Message></Message>
+        )
+    }
 }
 
-export default Message;
+export default MessageList

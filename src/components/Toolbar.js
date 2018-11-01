@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Toolbar = () => {
+const Toolbar = (props) => {
     return (
         <div className="row toolbar">
             <div className="col-md-12">

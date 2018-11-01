@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
-import Toolbar from './Toolbar';
-import Message from './Message';
-import MessageList from './MessageList';
 import '../style/App.css';
-import '../style/index.css';
+import MessageList from './MessageList'
+import Toolbar from './Toolbar'
 
 class App extends Component {
     constructor(props) {
-        super(props);
-            this.state = {
-                messages: []
-            }
+        super(props)
+        this.state = {
+        }
     }
 
     async componentDidMount() {
         const response = await fetch('http://localhost:8082/api/messages')
         const json = await response.json()
-        this.setState({messages: json})
+        this.setState({data: json})
+    }   
+
+    messageRead = (id) => {
+        console.log('messageRead', id)
+        const updatedMessages = this.state.data.map(message => {
+            if (message.id === id) {
+                message.read = !message.read;
+            }
+            return message;
+        })
+        this.setState({
+            data: updatedMessages
+        })
     }
 
-  render() {
-    return (
-      <div>
-        <Toolbar />
-        <MessageList messages={this.state.messages}/>
-      </div>
-    );
-  }
+    render() {
+        console.log(this.state)
+        return (
+            <div className="App">
+                <Toolbar />
+                <MessageList data={this.state.data} messageRead={this.messageRead}/>
+            </div>
+        );
+    }
 }
 
 export default App;
