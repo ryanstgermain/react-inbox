@@ -1,20 +1,13 @@
 import React from 'react';
 import '../style/App.css';
-import Message from './Message'
+import Message from './Message';
 
 const MessageList = (props) => {
-    console.log(props)
-    if (props.data !== undefined) {
-        return (
-            props.data.map(message => {
-                return <Message subject={message} messageRead={props.messageRead}></Message>
-            })
-        )
-    } else {
-        return (
-            <Message></Message>
-        )
-    }
+  return (
+    props.messages.map(message => {
+        return <Message message={message} messageRead={props.messageRead} messageSelected={props.messageSelected} />
+    })
+  );
 }
 
-export default MessageList
+export default MessageList;
