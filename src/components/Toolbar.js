@@ -10,8 +10,8 @@ const Toolbar = (props) => {
               unread messages
             </p>
 
-            <a class="btn btn-danger">
-              <i class="fa fa-plus"></i>
+            <a className="btn btn-danger">
+              <i className="fa fa-plus"></i>
             </a>
 
             <button className="btn btn-default">
@@ -22,7 +22,7 @@ const Toolbar = (props) => {
               Mark As Read
             </button>
 
-            <button className="btn btn-default">
+            <button onClick={props.markAsUnread} className="btn btn-default">
               Mark As Unread
             </button>
 

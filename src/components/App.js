@@ -29,9 +29,36 @@ messageSelected = (id) => {
   })
 }
 
+markAsUnread = (id) => {
+    console.log('markAsUnread')
+    let selectedMessages = this.state.messages.filter(message => message.selected === true)
+    console.log('selectedMessages', selectedMessages)
+    selectedMessages.forEach(message => this.messageUnread(message.id))
+}
+
+messageUnread = async (id) => {
+    console.log('messageUnread', id)
+
+    let message = {
+        messageIds: [id],
+        command: "unread",
+        "read": false
+    }
+    const updatedUnread = this.state.messages.map(message => {
+    if (message.id === id) {
+        console.log("lol")
+      message.read = false;
+    }
+    return message;
+  })
+  this.setState({
+    messages: updatedUnread
+  })
+}
+
 markAsRead = (id) => {
   console.log('markAsRead')
-  const selectedMessages = this.state.messages.filter(message => message.selected === true)
+  let selectedMessages = this.state.messages.filter(message => message.selected === true)
   console.log('selectedMessages', selectedMessages)
   selectedMessages.forEach(message => this.messageRead(message.id))
 }
@@ -67,8 +94,8 @@ messageRead = async (id) => {
   render() {
     return (
       <div className="App">
-        <Toolbar markAsRead={this.markAsRead}/>
-        <MessageList messages={this.state.messages} messageRead={this.messageRead} messageSelected={this.messageSelected}/>
+        <Toolbar markAsUnread={this.markAsUnread} markAsRead={this.markAsRead}/>
+        <MessageList messages={this.state.messages} messageUnread={this.messageUnread} messageRead={this.messageRead} messageSelected={this.messageSelected}/>
       </div>
     );
   }

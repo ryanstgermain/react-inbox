@@ -5,7 +5,7 @@ import Message from './Message';
 const MessageList = (props) => {
   return (
     props.messages.map(message => {
-        return <Message message={message} messageRead={props.messageRead} messageSelected={props.messageSelected} />
+        return <Message message={message} messageUnread={props.messageUnread} messageRead={props.messageRead} messageSelected={props.messageSelected} />
     })
   );
 }
